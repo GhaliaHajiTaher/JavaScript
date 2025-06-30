@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ghalia's One-Page Site</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff8dc;
+      color: #333;
+    }
+
+    nav {
+      background-color: #fdd835;
+      padding: 1em;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 60px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    h1, h2 {
+      color: #fbc02d;
+    }
+
+    .image-gallery img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Lightbox Modal Styles */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-content {
+      display: block;
+      max-width: 90%;
+      max-height: 80%;
+      margin: 5% auto;
+      border-radius: 10px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    form input, form textarea {
+      display: block;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    form button {
+      background-color: #fdd835;
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    footer {
+      background-color: #fbc02d;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="#videos">Videos</a>
+  </nav>
+
+  <section id="home">
+    <h1>Welcome My One-Page Site!</h1>
+    <p>This is a simple one-page website with a cheerful yellow color scheme, showcasing images, videos, and a contact form.</p>
+  </section>
+
+  <section id="gallery">
+    <h2>Image Gallery</h2>
+    <div class="image-gallery">
+      <img src="https://cdn.pixabay.com/photo/2021/07/28/22/20/houses-6504533_1280.jpg" alt="Image 1" class="lightbox-trigger">
+      <img src="https://cdn.pixabay.com/photo/2021/07/28/22/20/houses-6504533_1280.jpg" alt="Image 2" class="lightbox-trigger">
+      <img src="https://cdn.pixabay.com/photo/2021/07/28/22/20/houses-6504533_1280.jpg" alt="Image 3" class="lightbox-trigger">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <section id="videos">
+    <h2>Fav Video</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/yKNxeF4KMsY?si=3t5vzadDEien7Erv" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+  </section>
+
+  <footer>
+    &copy; 2025 Ghalia HajiTaher. All rights reserved.
+  </footer>
+
+  <!-- Lightbox Modal HTML -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Expanded view">
+  </div>
+
+  <!-- Lightbox JavaScript -->
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("lightboxClose");
+    const triggers = document.querySelectorAll(".lightbox-trigger");
+
+    triggers.forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "block";
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
